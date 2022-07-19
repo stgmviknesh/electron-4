@@ -10,7 +10,7 @@ app.disableHardwareAcceleration()
 
 let appWindow;
 let fileOpenPath;
-
+app.setAppUserModelId("VSTGM Text-Editor")
 function createWindows() {
     appWindow = new BrowserWindow({
         width: 1224,
@@ -23,10 +23,11 @@ function createWindows() {
         minWidth: 800,
         show: false,
         webPreferences: {
-            preload: path.join(app.getAppPath(), "renderer.js"),
+            preload: path.join(app.getAppPath(), "./src/renderer.js"),
             spellcheck: false
         },
-        icon: "./icon.png"
+        setMenuBarVisibility: false,
+        icon: "./src/icon.png"
     })
     appWindow.setMenuBarVisibility(true)
     appWindow.loadFile('./index.html')
@@ -43,12 +44,14 @@ function createWindows() {
 
 app.on('ready', createWindows)
 
-/* const handleError = () => {
+const handleError = (errorContent) => {
     new Notification({
         title: "Error",
-        body: "Sonething went wrong",
+        body: errorContent,
+        icon: "./src/icon.png",
+        sound: "./src/Notification.mp3"
     }).show()
-} */
+}
 
 ipcMain.on("create-file-clicked", () => {
     dialog.showSaveDialog(appWindow, {
@@ -57,6 +60,7 @@ ipcMain.on("create-file-clicked", () => {
         //console.log('file path', filePath)
         fs.writeFile(filePath, "", (error) => {
             if (error) {
+                handleError("Error while creating file")
                 console.log("Error while creating file")
             }
             else {
@@ -74,8 +78,9 @@ ipcMain.on("open-file-clicked", () => {
     }).then(({ filePaths }) => {
         const filePath = filePaths[0]
         //fileOpenPath = filePath
-        fs.readFile(filePath, "utf-8", (error, content) => {
+        fs.readFile(filePath + "456", "utf-8", (error, content) => {
             if (error) {
+                handleError("Error while opening file")
                 console.log('Error while opening file')
             }
             else {
@@ -89,6 +94,7 @@ ipcMain.on("open-file-clicked", () => {
 ipcMain.on("file-updated", (_, textareaContent) => {
     fs.writeFile(fileOpenPath, textareaContent, (error) => {
         if (error) {
+            handleError("Error while updating file")
             console.log("Error while updating file")
         }
     })
