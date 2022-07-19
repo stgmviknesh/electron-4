@@ -1,0 +1,17 @@
+{
+  "name": "vstgm-text-editor",
+  "version": "1.0.0",
+  "description": "Testing new app",
+  "main": "index.js",
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-builder"
+  },
+  "author": "VikneshSTGM",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^18.3.0",
+    "electron-builder": "^23.1.0",
+    "electron-reloader": "^1.2.3"
+  }
+}

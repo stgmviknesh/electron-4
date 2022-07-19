@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <!-- <meta http-equiv="Content-Security-Policy" content="default-src * self blob: data: gap:; style-src * self 'unsafe-inline' blob: data: gap:; script-src * 'self' 'unsafe-inline' blob: data: gap:; object-src * 'self' blob: data: gap:; img-src * self 'unsafe-inline' blob: data: gap:; connect-src self * 'unsafe-inline' blob: data: gap:; frame-src * self blob: data: gap:;"> -->
+    <meta http-equiv="Content-Security-Policy" content="script-src 'self';" >
+    <link href="https://fonts.googleapis.com/css2?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="./styles.css">
+    <title>STGM Text Editor</title>
+  </head>
+  <body>
+    <div class="title-bar">
+      <span class="document-name" id="documentName">no file selected</span>
+      <div class="menu-section">
+        <button id="createFileBtn"><span class="material-icons">mode_edit</span></button>
+        <button id="openFileBtn"><span class="material-icons">file_open</span></button> 
+      </div>
+    </div>
+    <main>
+      <textarea id="fileTextArea" disabled></textarea>
+    </main>
+  </body>
+</html>
