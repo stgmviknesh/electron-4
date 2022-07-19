@@ -78,7 +78,7 @@ ipcMain.on("open-file-clicked", () => {
     }).then(({ filePaths }) => {
         const filePath = filePaths[0]
         //fileOpenPath = filePath
-        fs.readFile(filePath + "456", "utf-8", (error, content) => {
+        fs.readFile(filePath, "utf-8", (error, content) => {
             if (error) {
                 handleError("Error while opening file")
                 console.log('Error while opening file')
